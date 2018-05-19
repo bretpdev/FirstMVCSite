@@ -17,6 +17,12 @@ namespace FirstMVCSite.Controllers
             ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
             ViewData["Runtime"] = isMono ? "Mono" : ".NET";
 
+            var controller = RouteData.Values["controller"];
+            var action = RouteData.Values["action"];
+            var id = RouteData.Values["id"];
+
+            ViewBag.Message = string.Format("{0}::{1} {2}", controller, action, id);
+
             return View();
         }
     }
