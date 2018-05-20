@@ -20,10 +20,16 @@ namespace FirstMVCSite.Controllers
             //return Json(new { Message = message, Name = "Bret" }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public ActionResult Search()
-        {
-            return Content("Search!");
-        }
+        //[HttpGet]
+        //public ActionResult Search()
+        //{
+        //    return Content("Search!");
+        //}
+
+        //[Authorize] // Redirects you to a login page 
+        //public ActionResult Search()
+        //{
+            
+        //}
     }
 }
