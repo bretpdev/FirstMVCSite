@@ -77,8 +77,8 @@ namespace FirstMVCSite.Controllers
             new RestaurantReview {
                 Id = 1,
                 Name = "Cinnamon Club",
-                City = "Salt Lake City",
-                Country = "USA",
+                City = "Paris",
+                Country = "France",
                 Rating = 10
             },
             new RestaurantReview{
@@ -93,6 +93,13 @@ namespace FirstMVCSite.Controllers
                 Name = "The House of Elliot",
                 City = "Ghent",
                 Country = "Belgium",
+                Rating = 10
+            },
+            new RestaurantReview{
+                Id = 4,
+                Name = "The Green Pig",
+                City = "Salt Lake City",
+                Country = "USA",
                 Rating = 10
             }
         };
