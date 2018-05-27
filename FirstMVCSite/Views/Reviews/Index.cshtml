@@ -1,52 +1,84 @@
 ﻿@model IEnumerable<FirstMVCSite.Models.RestaurantReview>
 
-@{
-    ViewBag.Title = "Reviews";
-}
+    @{
+        ViewBag.Title = "Reviews";
+        var firstReview = Model.First();
+    }
 
-<h2>Reviews</h2>
+    @firstReview.Name @* Will display the first restuarant name from the ordered list*@
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th></th>
-    </tr>
+    <h2>The Latest Reviews</h2>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
+    We are showing the latest @Model.Count() reviews.
+    <br />
+    @VirtualPath
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                    @item.Rating / 10 @* Displays as 10 / 10 *@
+                    @(item.Rating / 10) @* Displays as 1 *@
+                    R@item.Rating @* Displays as R@item.Rating *@
+                    R@(item.Rating) @* Displays as R10 *@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+
+        }
+    </table>}
+
+    <br /><br /><br /><br /><br />
+
+    @foreach (var item in Model)
+    {
+        @:Review @* Will escapse the C# code and display text *@
+        <div>
+            <h4>@item.Name</h4>
+            <span>@item.Rating</span>
+            <p>@item.City, @item.Country</p>
+        </div>
+
+        <span>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        </span>
+    }
 
-}
-</table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>

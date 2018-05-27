@@ -41,17 +41,20 @@ namespace FirstMVCSite.Controllers
         
         public ActionResult Edit(int id)
         {
+            var review = _reviews.Single(p => p.Id == id);
             return View ();
         }
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try {
-                return RedirectToAction ("Index");
-            } catch {
-                return View ();
+            var review _reviews.Single(p => p.Id == id);
+            if (TryUpdateModel(review))
+            {
+                // ..Would save to database
+                return RedirectToAction("Index");
             }
+            return View(review);
         }
 
         public ActionResult Delete(int id)
@@ -101,6 +104,13 @@ namespace FirstMVCSite.Controllers
                 City = "Salt Lake City",
                 Country = "USA",
                 Rating = 10
+            },
+            new RestaurantReview{
+                Id = 5,
+                Name = "IHOP",
+                City = "<script>alert('xss');</script>", //Will display as text and not < character
+                Country = "USA",
+                Rating = 5
             }
         };
     }
